@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" type="ikonka" href="/image/Logo (1).png">
+    <title>КругоСветка</title>
+</head>
+<body>
+<header>
+   <input class="menu-icon" type="checkbox" id="menu-icon" name="menu-icon"/>
+    <label for="menu-icon"></label>
+    <nav class="nav">     
+      <ul class="pt-5">
+        <li><a href="#">Маршруты</a></li>
+        <li><a href="#">О нас</a></li>
+        <li><a href="#">Статьи</a></li>
+        <li><a href="#">Контакты</a></li>
+        <li><a href="#">Корзина</a></li>
+        <li><a href="#">Избранное</a></li>
+        <li><a href="#">Профиль</a></li>
+      </ul>
+    </nav>
+    <div class="logo-image">
+        <img src="image/Logo.png" alt="Логотип" class="logo">
+        <span class="header-text">площадь Революции, г. Челябинск</span>
+        <img src="image/Vk.png" alt="Vkshapka" class="Vk">
+        <img src="image/Ok.png" alt="Okshapka" class="Ok">
+        <img src="image/Кругосветка.png" alt="Krugoshapka" class="Krugo">
+        <hr class="header-line">
+        <span class="headermarhrut">Маршруты</span>
+        <span class="header-onas">О нас</span>
+        <span class="header-staty">Статьи</span>
+        <span class="header-contacts">Контакты</span>
+        <span class="header-cart">Корзина</span>
+        <span class="header-favorites">Избранное</span>
+        <span class="header-profile">Профиль</span>
+       
+
+        </button>
+      </div>
+</header>
+<boader>
+<h1 class="profile">Профиль</h1>  
+<span class="name">Имя</span>
+<span class="body-email">Электронная почта</span>
+<span class="body-birthdate">Дата рождения</span>
+<span class="body-lastname">Фамилия</span>
+<span class="body-phone">Телефон</span>
+<span class="body-city">Город</span>
+<input type="text" class="text-name">
+<input type="email" id="emailField" class="text-email" oninput="validateEmail()">
+<input type="date" class="date-field">
+<input type="text" class="text-lastname">
+<input type="text" class="text-number">
+<input type="text" class="text-city">
+<div class="saved-cards">
+    Сохраненные карты
+  </div>
+  <div class="documents">
+    Документы
+  </div>
+  <div class="box" onclick="toggleContent()">
+    <span class="box-text">Добавить</span>
+    <img src="image/ic_round-plus.png" alt="plusik1" class="plusik1">
+  </div>
+  <div class="content hidden">
+    
+    <div class="card-number hidden">Номер карты</div>
+    <input type="text" class="text-numbercard">
+    <div class="card-srok hidden">Срок действия</div>
+    <input type="month" class="text-srokcard">
+    <div class="card-cvc hidden">CVC</div>
+    <input type="password" class="text-cvc">  
+    <div class="box1hidden">
+      <span class="box-text1">Добавить карту</span>
+    </div>
+    <div class="box2hidden">
+      <span class="box-text2">Добавить</span>
+      <img src="image/ic_round-plus.png" alt="plusik1" class="plusik1">
+    </div>
+  </div>
+  <div class="box4">
+    <span class="box-text4">Добавить</span>
+    <img src="image/ic_round-plus.png" alt="plusik1" class="plusik1">
+  </div>
+</boader>
+<footer>
+  <div class="footer">
+    <img src="/image/logopodval.png" alt="Логотипбелый" class="logopodval">
+    <span class="footer-marshruty">Маршруты</span>
+    <span class="footer-onas">О нас</span>
+    <span class="footer-staty">Статьи</span>
+    <span class="footer-kontakty">Контакты</span>
+    <span class="footer-profile">Профиль</span>
+    <span class="footer-trash">Корзина</span>
+    <span class="footer-izbran">Избранное</span>
+    <img src="image/Vk.png" alt="Vkfooter" class="Vkfooter">
+    <img src="image/Ok.png" alt="Okfooter" class="Okfooter">
+  </div>
+</footer>
+<script>
+ function toggleContent() {
+      const box = document.querySelector('.box');
+      const content = document.querySelector('.content');
+      const cardNumber = document.querySelector('.card-number');
+      const textnumber = document.querySelector('.text-numbercard');
+      const cardsrok = document.querySelector('.card-srok');
+      const textsrok = document.querySelector('.text-srokcard');
+      const cardcvc = document.querySelector('.card-cvc');
+      const textcvc = document.querySelector('.text-cvc');
+      const box1hidden = document.querySelector('.box1hidden');
+      const box2hidden = document.querySelector('.box2hidden');
+      
+
+      box.style.display = 'none';
+      content.classList.remove('hidden');
+      cardNumber.classList.remove('hidden');
+      cardsrok.classList.remove('hidden');
+      cardcvc.classList.remove('hidden');
+      textnumber.classList.remove('hidden');
+      textsrok.classList.remove('hidden');
+      textcvc.classList.remove('hidden');
+      box1hidden.classList.remove('hidden');
+      box2hidden.classList.remove('hidden');
+    }
+    var timeoutId;
+var isEmailValid = false;
+
+function validateEmail() {
+  clearTimeout(timeoutId);
+
+  timeoutId = setTimeout(function () {
+    var emailInput = document.getElementById('emailField');
+    var email = emailInput.value;
+
+    // Регулярное выражение для проверки правильного формата email
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+      // Если email введен неправильно, добавляем класс с красной подсветкой и анимацией
+      emailInput.classList.add('error');
+      emailInput.classList.add('animated');
+    } else {
+      // Если email введен правильно, удаляем класс с красной подсветкой и анимацией
+      emailInput.classList.remove('error');
+      emailInput.classList.remove('animated');
+      emailInput.classList.remove('black-text');
+    }
+  }, 500);
+}
+
+document.getElementById('emailField').addEventListener('input', function () {
+  var emailInput = document.getElementById('emailField');
+
+  if (emailInput.classList.contains('error')) {
+    emailInput.classList.remove('error');
+    emailInput.classList.remove('animated');
+  }
+});
+</script>
+
+</body> 
+</html>
