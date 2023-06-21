@@ -1,0 +1,1162 @@
+/* Общие стили */
+.container {
+  width: 100%; /* Ширина контейнера */
+  max-width: 1200px; /* Максимальная ширина контейнера, чтобы он не стал слишком широким на больших экранах */
+  margin: 0 auto; /* Центрирование контейнера по горизонтали */
+}
+.section-center{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  z-index: 6;
+  text-align: center;
+  transform: translateY(-50%);
+}
+
+[type="checkbox"]:checked,
+[type="checkbox"]:not(:checked){
+  position: absolute;
+  left: -9999px;
+}
+.menu-icon:checked + label,
+.menu-icon:not(:checked) + label{
+  position: fixed;
+  top: 63px;
+  right: 75px;
+  display: none;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  z-index: 10;
+}
+.menu-icon:checked + label:before,
+.menu-icon:not(:checked) + label:before{
+  position: absolute;
+  content: '';
+  display: none;
+  width: 30px;
+  height: 20px;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  border-top: 2px solid #ececee;
+  border-bottom: 2px solid #ececee;
+  transition: border-width 100ms 1500ms ease, 
+              top 100ms 1600ms cubic-bezier(0.23, 1, 0.32, 1),
+              height 100ms 1600ms cubic-bezier(0.23, 1, 0.32, 1), 
+              background-color 200ms ease,
+              transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.menu-icon:checked + label:after,
+.menu-icon:not(:checked) + label:after{
+  position: absolute;
+  content: '';
+  display: none;
+  width: 22px;
+  height: 2px;
+  z-index: 20;
+  top: 10px;
+  right: 4px;
+  background-color: #ececee;
+  margin-top: -1px;
+  transition: width 100ms 1750ms ease, 
+              right 100ms 1750ms ease,
+              margin-top 100ms ease, 
+              transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.menu-icon:checked + label:before{
+  top: 10px;
+  transform: rotate(45deg);
+  height: 2px;
+  background-color: #ececee;
+  border-width: 0;
+  transition: border-width 100ms 340ms ease, 
+              top 100ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
+              height 100ms 300ms cubic-bezier(0.23, 1, 0.32, 1), 
+              background-color 200ms 500ms ease,
+              transform 200ms 1700ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.menu-icon:checked + label:after{
+  width: 30px;
+  margin-top: 0;
+  right: 0;
+  transform: rotate(-45deg);
+  transition: width 100ms ease,
+              right 100ms ease,  
+              margin-top 100ms 500ms ease, 
+              transform 200ms 1700ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.nav{
+  position: fixed;
+  top: 33px;
+  right: 50px;
+  display: none;
+  width: 80px;
+  height: 80px;
+  padding: 0;
+  margin: 0;
+  z-index: 9;
+  overflow: hidden;
+  box-shadow: 0 8px 30px 0 rgba(0,0,0,0.3);
+  background-color: #353746;
+  animation: border-transform 7s linear infinite;
+  transition: top 350ms 1100ms cubic-bezier(0.23, 1, 0.32, 1),  
+              right 350ms 1100ms cubic-bezier(0.23, 1, 0.32, 1),
+              transform 250ms 1100ms ease,
+              width 650ms 400ms cubic-bezier(0.23, 1, 0.32, 1),
+              height 650ms 400ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+@keyframes border-transform{
+    0%,100% { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; } 
+  14% { border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%; } 
+  28% { border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%; } 
+  42% { border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%; } 
+  56% { border-radius: 61% 39% 67% 33% / 70% 50% 50% 30%; } 
+  70% { border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%; } 
+  84% { border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%; } 
+}
+
+.menu-icon:checked ~ .nav {
+  animation-play-state: paused;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  width: 200%;
+  height: 200%;
+  transition: top 350ms 700ms cubic-bezier(0.23, 1, 0.32, 1),  
+              right 350ms 700ms cubic-bezier(0.23, 1, 0.32, 1),
+              transform 250ms 700ms ease,
+              width 750ms 1000ms cubic-bezier(0.23, 1, 0.32, 1),
+              height 750ms 1000ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.nav ul{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  z-index: 6;
+  text-align: center;
+  transform: translateY(-50%);
+  list-style: none;
+}
+.nav ul li{
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 10px 0;
+  text-align: center;
+  list-style: none;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(30px);
+  transition: all 250ms linear;
+}
+.nav ul li:nth-child(1){
+  transition-delay: 200ms;
+}
+.nav ul li:nth-child(2){
+  transition-delay: 150ms;
+}
+.nav ul li:nth-child(3){
+  transition-delay: 100ms;
+}
+.nav ul li:nth-child(4){
+  transition-delay: 50ms;
+}
+.nav ul li a{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9vh;
+  text-transform: uppercase;
+  line-height: 1.2;
+  font-weight: 800;
+  display: inline-block;
+  position: relative;
+  color: #ececee;
+  transition: all 250ms linear;
+}
+.nav ul li a:hover{
+  text-decoration: none;
+  color: #E6641B;;
+}
+.nav ul li a:hover:after{
+  width: 100%;
+}
+
+
+.menu-icon:checked ~ .nav  ul li {
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 350ms ease,
+              transform 250ms ease;
+}
+.menu-icon:checked ~ .nav ul li:nth-child(1){
+  transition-delay: 1400ms;
+}
+.menu-icon:checked ~ .nav ul li:nth-child(2){
+  transition-delay: 1480ms;
+}
+.menu-icon:checked ~ .nav ul li:nth-child(3){
+  transition-delay: 1560ms;
+}
+.menu-icon:checked ~ .nav ul li:nth-child(4){
+  transition-delay: 1640ms;
+}
+.menu-icon:checked ~ .nav ul li:nth-child(5){
+  transition-delay: 1720ms;
+}
+.menu-icon:checked ~ .nav ul li:nth-child(6){
+  transition-delay: 1800ms;
+}
+.menu-icon:checked ~ .nav ul li:nth-child(7){
+  transition-delay: 1880ms;
+}
+
+
+.logo img {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+
+
+
+@media screen and (max-width: 991px) {
+  .menu-icon:checked + label,
+  .menu-icon:not(:checked) + label{
+    right: 55px;
+  }
+  .nav{
+    right: 30px;
+  }
+  .nav ul li a{
+    font-size: 8vh;
+  }
+}
+
+header {
+    width: 100%;
+    height: 100px; /* Задайте нужную высоту шапки */
+  }
+  
+  /* Стили для логотипа */
+  .logo {
+    position: absolute;
+    top: 26px; /* Задайте нужное значение для координаты Y */
+    left: 150px; /* Задайте нужное значение для координаты X */
+    width: 70.6px; /* Задайте нужную ширину */
+    height: 70.58px; /* Задайте нужную высоту */
+  }
+  
+  
+  .logo img {
+    width: 100px; /* Размеры логотипа */
+    height: auto;
+  }
+  .header-text {
+    position: absolute;
+    top: 50px; /* Задайте нужное значение для координаты Y */
+    left: 1097px; /* Задайте нужное значение для координаты X */
+    width: 417px; /* Задайте нужную ширину */
+    height: 70px; /* Задайте нужную высоту */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+  }
+  .Vk {
+    position: absolute;
+  top: 34px; /* Задайте нужное значение для координаты Y */
+  left: 1645px; /* Задайте нужное значение для координаты X */
+  width: 55px; /* Задайте нужную ширину */
+  height: 55px; /* Задайте нужную высоту */
+  }
+  .Ok {
+    position: absolute;
+    top: 36px; /* Задайте нужное значение для координаты Y */
+    left: 1720px; /* Задайте нужное значение для координаты X */
+    width: 50px; /* Задайте нужную ширину */
+    height: 50px; /* Задайте нужную высоту */
+  }
+  .Krugo {
+    position: absolute;
+    top: 49.43px; /* Задайте нужное значение для координаты Y */
+    left: 233.59px; /* Задайте нужное значение для координаты X */
+    width: 306.41px; /* Задайте нужную ширину */
+    height: 28.14px; /* Задайте нужную высоту */
+  }
+  .header-line {
+    position: absolute;
+    top: 123px; /* Задайте нужное значение для координаты Y */
+    left: 0;
+    width: 100%; /* Займет всю доступную ширину */
+    height: 17px; /* Задайте нужную высоту */
+    background-color: #F5F5F5; /* Задайте цвет линии */
+    border: none; /* Уберите границу линии, если не требуется */
+  }
+  /* Вкладка маршруты в header*/
+  .headermarhrut {
+    position: absolute;
+    top: 146px; /* Задайте нужное значение для координаты Y */
+    left: 127px; /* Задайте нужное значение для координаты X */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 70px; /* Задайте высоту строки */
+    font-weight: bold; /* Задайте полужирное начертание */
+    transition: color 0.3s; /* Добавляем плавный переход для изменения фона */
+    cursor: pointer;
+  }
+  /* Вкладка маршруты в header*/
+  .headermarhrut:hover,
+  .headermarhrut:focus {
+    color: #E6641B; /* Задайте цвет подсветки */
+  }
+  /* Вкладка о нас в header*/
+  .header-onas {
+    position: absolute;
+    top: 146px; /* Задайте нужное значение для координаты Y */
+    left: 413px; /* Задайте нужное значение для координаты X */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 70px; /* Задайте высоту строки */
+    font-weight: bold; /* Задайте полужирное начертание */
+    transition: color 0.3s; /* Добавляем плавный переход для изменения фона */
+    cursor: pointer;
+  }
+  /* Вкладка о нас в header*/
+  .header-onas:hover,
+  .header-onas:focus {
+    color: #E6641B; /* Задайте цвет подсветки */
+  }
+  /* Вкладка статьи в header*/
+  .header-staty {
+    position: absolute;
+    top: 146px; /* Задайте нужное значение для координаты Y */
+    left: 605px; /* Задайте нужное значение для координаты X */
+    width: 92;
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 70px; /* Задайте высоту строки */
+    font-weight: bold; /* Задайте полужирное начертание */
+    transition: color 0.3s; /* Добавляем плавный переход для изменения фона */
+    cursor: pointer;
+  }
+    /* Вкладка статьи в header*/
+  .header-staty:hover,
+  .header-staty:focus {
+    color: #E6641B; /* Задайте цвет подсветки */
+  }
+   /* Вкладка контакты в header*/
+  .header-contacts {
+    position: absolute;
+    top: 146px; /* Задайте нужное значение для координаты Y */
+    left: 823px; /* Задайте нужное значение для координаты X */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 70px; /* Задайте высоту строки */
+    font-weight: bold; /* Задайте полужирное начертание */
+    transition: color 0.3s; /* Добавляем плавный переход для изменения фона */
+    cursor: pointer;
+  }
+ /* Вкладка контакты в header*/
+  .header-contacts:hover,
+  .header-contacts:focus {
+    color: #E6641B; /* Задайте цвет подсветки */
+  }
+  /* Вкладка корзина в header*/
+  .header-cart {
+    position: absolute;
+    top: 146px; /* Задайте нужное значение для координаты Y */
+    left: 1088px; /* Задайте нужное значение для координаты X */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 70px; /* Задайте высоту строки */
+    font-weight: bold; /* Задайте полужирное начертание */
+    transition: color 0.3s; /* Добавляем плавный переход для изменения фона */
+    cursor: pointer;
+  }
+  /* Вкладка корзина в header*/
+  .header-cart:hover,
+  .header-cart:focus {
+    color: #E6641B; /* Задайте цвет подсветки */
+  }
+  /* Вкладка избранное в header*/
+  .header-favorites {
+    position: absolute;
+    top: 146px; /* Задайте нужное значение для координаты Y */
+    left: 1331px; /* Задайте нужное значение для координаты X */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 70px; /* Задайте высоту строки */
+    font-weight: bold; /* Задайте полужирное начертание */
+    transition: color 0.3s; /* Добавляем плавный переход для изменения фона */
+    cursor: pointer;
+  }
+  /* Вкладка избранное в header*/
+  .header-favorites:hover,
+  .header-favorites:focus {
+    color: #E6641B; /* Задайте цвет подсветки */
+  }
+  /* Вкладка профиль в header*/
+  .header-profile {
+    position: absolute;
+    top: 146px; /* Задайте нужное значение для координаты Y */
+    left: 1614px; /* Задайте нужное значение для координаты X */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 70px; /* Задайте высоту строки */
+    font-weight: bold; /* Задайте полужирное начертание */
+    transition: color 0.3s; /* Добавляем плавный переход для изменения фона */
+    cursor: pointer;
+  }
+  /* Вкладка профиль в header*/
+  .header-profile:hover,
+  .header-profile:focus {
+    color: #E6641B; /* Задайте цвет подсветки */
+  }
+  .profile {
+    position: absolute;
+    top: 300px; /* Задайте нужное значение для координаты Y */
+    left: 150px; /* Задайте нужное значение для координаты X */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 48px; /* Задайте размер шрифта */
+    line-height: 70px; /* Задайте высоту строки */
+    font-weight: bold; /* Задайте полужирное начертание */
+  }
+  .name {
+    position: absolute;
+    top: 500px; /* Задайте нужное значение для координаты Y */
+    left: 180px; /* Задайте нужное значение для координаты X */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: auto; /* Задайте высоту строки автоматически */
+    font-weight: normal; /* Задайте обычное начертание */
+  }
+  .body-email {
+    position: absolute;
+    top: 500px; /* Задайте нужное значение для координаты Y */
+    left: 800px; /* Задайте нужное значение для координаты X */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: auto; /* Задайте высоту строки автоматически */
+    font-weight: normal; /* Задайте обычное начертание */
+  }
+  .body-birthdate {
+    position: absolute;
+    top: 500px; /* Задайте нужное значение для координаты Y */
+    left: 1400px; /* Задайте нужное значение для координаты X */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: auto; /* Задайте высоту строки автоматически */
+    font-weight: normal; /* Задайте обычное начертание */
+  }
+  .body-lastname {
+    position: absolute;
+    top: 700px; /* Задайте нужное значение для координаты Y */
+    left: 180px; /* Задайте нужное значение для координаты X */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: auto; /* Задайте высоту строки автоматически */
+    font-weight: normal; /* Задайте обычное начертание */
+  }
+  .body-phone {
+    position: absolute;
+    top: 700px; /* Задайте нужное значение для координаты Y */
+    left: 800px; /* Задайте нужное значение для координаты X */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: auto; /* Задайте высоту строки автоматически */
+    font-weight: normal; /* Задайте обычное начертание */
+  }
+  .body-city {
+    position: absolute;
+    top: 700px; /* Задайте нужное значение для координаты Y */
+    left: 1400px; /* Задайте нужное значение для координаты X */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: auto; /* Задайте высоту строки автоматически */
+    font-weight: normal; /* Задайте обычное начертание */
+  }
+  .text-name {
+    position: absolute;
+    top: 550px; /* Задайте нужное значение для координаты Y */
+    left: 150px; /* Задайте нужное значение для координаты X */
+    width: 527px; /* Задайте нужное значение для ширины */
+    height: 60px; /* Задайте нужное значение для высоты */
+    border-radius: 65px; /* Задайте нужное значение для радиуса скругления углов */
+    background-color: #F3F3F3; /* Задайте нужный цвет фона */
+    border: none; /* Удалите границу, если не требуется */
+    outline: none; /* Удалите контур, если не требуется */
+    padding: 20px; /* Задайте нужное значение для отступов внутри поля */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 1.5; /* Задайте высоту строки */
+    font-weight: normal; /* Задайте обычное начертание */
+  }
+  .text-email {
+    position: absolute;
+    top: 550px; /* Задайте нужное значение для координаты Y */
+    left: 750px; /* Задайте нужное значение для координаты X */
+    width: 527px; /* Задайте нужное значение для ширины */
+    height: 60px; /* Задайте нужное значение для высоты */
+    border-radius: 65px; /* Задайте нужное значение для радиуса скругления углов */
+    background-color: #F3F3F3; /* Задайте нужный цвет фона */
+    border: none; /* Удалите границу, если не требуется */
+    outline: none; /* Удалите контур, если не требуется */
+    padding: 20px; /* Задайте нужное значение для отступов внутри поля */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 1.5; /* Задайте высоту строки */
+    font-weight: normal; /* Задайте обычное начертание */
+  }
+  .error {
+    color: red;
+  }
+  
+  .animated {
+    animation: shake 0.5s;
+  }
+  .black-text {
+    color: black !important;
+  }
+  
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-5px); }
+    40% { transform: translateX(5px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
+  }
+  .date-field {
+    position: absolute;
+    top: 550px; /* Задайте нужное значение для координаты Y */
+    left: 1350px; /* Задайте нужное значение для координаты X */
+    width: 527px; /* Задайте нужное значение для ширины */
+    height: 60px; /* Задайте нужное значение для высоты */
+    border-radius: 65px; /* Задайте нужное значение для радиуса скругления углов */
+    background-color: #F3F3F3; /* Задайте нужный цвет фона */
+    border: none; /* Удалите границу, если не требуется */
+    outline: none; /* Удалите контур, если не требуется */
+    padding: 20px; /* Задайте нужное значение для отступов внутри поля */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 1.5; /* Задайте высоту строки */
+    font-weight: normal; /* Задайте обычное начертание */
+  }
+  .text-lastname {
+    position: absolute;
+    top: 750px; /* Задайте нужное значение для координаты Y */
+    left: 150px; /* Задайте нужное значение для координаты X */
+    width: 527px; /* Задайте нужное значение для ширины */
+    height: 60px; /* Задайте нужное значение для высоты */
+    border-radius: 65px; /* Задайте нужное значение для радиуса скругления углов */
+    background-color: #F3F3F3; /* Задайте нужный цвет фона */
+    border: none; /* Удалите границу, если не требуется */
+    outline: none; /* Удалите контур, если не требуется */
+    padding: 20px; /* Задайте нужное значение для отступов внутри поля */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 1.5; /* Задайте высоту строки */
+    font-weight: normal; /* Задайте обычное начертание */
+  }
+  .text-number {
+    position: absolute;
+    top: 750px; /* Задайте нужное значение для координаты Y */
+    left: 750px; /* Задайте нужное значение для координаты X */
+    width: 527px; /* Задайте нужное значение для ширины */
+    height: 60px; /* Задайте нужное значение для высоты */
+    border-radius: 65px; /* Задайте нужное значение для радиуса скругления углов */
+    background-color: #F3F3F3; /* Задайте нужный цвет фона */
+    border: none; /* Удалите границу, если не требуется */
+    outline: none; /* Удалите контур, если не требуется */
+    padding: 20px; /* Задайте нужное значение для отступов внутри поля */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 1.5; /* Задайте высоту строки */
+    font-weight: normal; /* Задайте обычное начертание */
+  }
+  .text-city {
+    position: absolute;
+    top: 750px; /* Задайте нужное значение для координаты Y */
+    left: 1350px; /* Задайте нужное значение для координаты X */
+    width: 527px; /* Задайте нужное значение для ширины */
+    height: 60px; /* Задайте нужное значение для высоты */
+    border-radius: 65px; /* Задайте нужное значение для радиуса скругления углов */
+    background-color: #F3F3F3; /* Задайте нужный цвет фона */
+    border: none; /* Удалите границу, если не требуется */
+    outline: none; /* Удалите контур, если не требуется */
+    padding: 20px; /* Задайте нужное значение для отступов внутри поля */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 1.5; /* Задайте высоту строки */
+    font-weight: normal; /* Задайте обычное начертание */
+  }
+  .saved-cards {
+    position: absolute;
+    top: 1000px; /* Задайте нужное значение для координаты Y */
+    left: 150px; /* Задайте нужное значение для координаты X */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 32px; /* Задайте размер шрифта */
+    line-height: normal; /* Автоопределение высоты строки */
+    font-weight: bold; /* Задайте полужирное начертание */
+  }
+  .documents {
+    position: absolute;
+    top: 1000px; /* Задайте нужное значение для координаты Y */
+    left: 1100px; /* Задайте нужное значение для координаты X */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 32px; /* Задайте размер шрифта */
+    line-height: normal; /* Автоопределение высоты строки */
+    font-weight: bold; /* Задайте полужирное начертание */
+  }
+  .box {
+    position: absolute;
+    top: 1075px; /* Задайте нужное значение для координаты Y */
+    left: 150px; /* Задайте нужное значение для координаты X */
+    width: 663px; /* Задайте нужное значение для ширины */
+    height: 60px; /* Задайте нужное значение для высоты */
+    border-radius: 65px; /* Задайте нужное значение для радиуса скругления углов */
+    background-color: #FFFFFF; /* Задайте нужный цвет фона */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); /* Задайте эффект тени с указанными параметрами */
+    display: flex; /* Добавим flex-контейнер для выравнивания содержимого по центру */
+    justify-content: left; /* Выравнивание по горизонтали */
+    align-items: center; /* Выравнивание по вертикали */
+    padding-left: 30px; /* Добавим отступ слева */
+    cursor: pointer;
+  }
+
+  .hidden {
+    display: none; /* Изначально скроем содержимое */
+    
+  }
+  .box1hidden {
+    display: none;
+  }
+  .box1hidden {
+    position: absolute;
+    top: 1450px; /* Задайте нужное значение для координаты Y */
+    left: 125px; /* Задайте нужное значение для координаты X */
+    width: 300px; /* Задайте нужное значение для ширины */
+    height: 60px; /* Задайте нужное значение для высоты */
+    border-radius: 65px; /* Задайте нужное значение для радиуса скругления углов */
+    background-color: #EF811A; /* Задайте нужный цвет фона */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); /* Задайте эффект тени с указанными параметрами */
+    display: flex; /* Добавим flex-контейнер для выравнивания содержимого по центру */
+    justify-content: left; /* Выравнивание по горизонтали */
+    align-items: center; /* Выравнивание по вертикали */
+    padding-left: 30px; /* Добавим отступ слева */
+    cursor: pointer;
+  }
+  .box-text1 {
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 0; /* Задайте нулевую высоту строки */
+    font-weight: normal; /* Задайте обычное начертание */
+    color: #FFF;
+    padding-left: 50px;
+  }
+  .box2hidden {
+    position: absolute;
+    top: 1550px; /* Задайте нужное значение для координаты Y */
+    left: 125px; /* Задайте нужное значение для координаты X */
+    width: 663px; /* Задайте нужное значение для ширины */
+    height: 60px; /* Задайте нужное значение для высоты */
+    border-radius: 65px; /* Задайте нужное значение для радиуса скругления углов */
+    background-color: #FFFFFF; /* Задайте нужный цвет фона */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); /* Задайте эффект тени с указанными параметрами */
+    display: flex; /* Добавим flex-контейнер для выравнивания содержимого по центру */
+    justify-content: left; /* Выравнивание по горизонтали */
+    align-items: center; /* Выравнивание по вертикали */
+    padding-left: 30px; /* Добавим отступ слева */
+    cursor: pointer;
+  }
+  .box-text2 {
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 0; /* Задайте нулевую высоту строки */
+    font-weight: normal; /* Задайте обычное начертание */
+  }
+  .box4 {
+    position: absolute;
+    top: 1075px; /* Задайте нужное значение для координаты Y */
+    left: 1090px; /* Задайте нужное значение для координаты X */
+    width: 663px; /* Задайте нужное значение для ширины */
+    height: 60px; /* Задайте нужное значение для высоты */
+    border-radius: 65px; /* Задайте нужное значение для радиуса скругления углов */
+    background-color: #FFFFFF; /* Задайте нужный цвет фона */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); /* Задайте эффект тени с указанными параметрами */
+    display: flex; /* Добавим flex-контейнер для выравнивания содержимого по центру */
+    justify-content: left; /* Выравнивание по горизонтали */
+    align-items: center; /* Выравнивание по вертикали */
+    padding-left: 30px; /* Добавим отступ слева */
+    cursor: pointer;
+  }
+  .box-text4 {
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 0; /* Задайте нулевую высоту строки */
+    font-weight: normal; /* Задайте обычное начертание */
+  }
+  .card-number {
+    font-family: "Open Sans", sans-serif;
+    font-size: 24px;
+    position: absolute;
+    top: 1075px;
+    left: 150px;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+  }
+  .text-numbercard {
+    position: absolute;
+    top: 1110px; /* Задайте нужное значение для координаты Y */
+    left: 120px; /* Задайте нужное значение для координаты X */
+    width: 800px; /* Задайте нужное значение для ширины */
+    height: 60px; /* Задайте нужное значение для высоты */
+    border-radius: 65px; /* Задайте нужное значение для радиуса скругления углов */
+    background-color: #F3F3F3; /* Задайте нужный цвет фона */
+    border: none; /* Удалите границу, если не требуется */
+    outline: none; /* Удалите контур, если не требуется */
+    padding: 20px; /* Задайте нужное значение для отступов внутри поля */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 1.5; /* Задайте высоту строки */
+    font-weight: normal; /* Задайте обычное начертание */
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .card-srok {
+    font-family: "Open Sans", sans-serif;
+    font-size: 24px;
+    position: absolute;
+    top: 1250px;
+    left: 150px;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+  }
+  .text-srokcard {
+    position: absolute;
+    top: 1300px; /* Задайте нужное значение для координаты Y */
+    left: 120px; /* Задайте нужное значение для координаты X */
+    width: 350px; /* Задайте нужное значение для ширины */
+    height: 60px; /* Задайте нужное значение для высоты */
+    border-radius: 65px; /* Задайте нужное значение для радиуса скругления углов */
+    background-color: #F3F3F3; /* Задайте нужный цвет фона */
+    border: none; /* Удалите границу, если не требуется */
+    outline: none; /* Удалите контур, если не требуется */
+    padding: 20px; /* Задайте нужное значение для отступов внутри поля */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 1.5; /* Задайте высоту строки */
+    font-weight: normal; /* Задайте обычное начертание */
+  }
+  
+  .card-cvc {
+    font-family: "Open Sans", sans-serif;
+    font-size: 24px;
+    position: absolute;
+    top: 1250px;
+    left: 600px;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+  }
+  .text-cvc {
+    position: absolute;
+    top: 1300px; /* Задайте нужное значение для координаты Y */
+    left: 575px; /* Задайте нужное значение для координаты X */
+    width: 350px; /* Задайте нужное значение для ширины */
+    height: 60px; /* Задайте нужное значение для высоты */
+    border-radius: 65px; /* Задайте нужное значение для радиуса скругления углов */
+    background-color: #F3F3F3; /* Задайте нужный цвет фона */
+    border: none; /* Удалите границу, если не требуется */
+    outline: none; /* Удалите контур, если не требуется */
+    padding: 20px; /* Задайте нужное значение для отступов внутри поля */
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 1.5; /* Задайте высоту строки */
+    font-weight: normal; /* Задайте обычное начертание */
+  }
+  .box-text {
+    font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+    font-size: 24px; /* Задайте размер шрифта */
+    line-height: 0; /* Задайте нулевую высоту строки */
+    font-weight: normal; /* Задайте обычное начертание */
+  }
+  .plusik1 {
+    margin-left: auto; /* Установим отступ слева "auto" для выравнивания картинки справа */
+    padding-right: 30px; /* Добавим отступ слева */
+  }
+  .footer {
+  position: absolute;
+  top: 1800px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 439px;
+  background-color: #2D64A1;
+ }
+ .logopodval {
+  position: absolute;
+    left: 150px;
+    top: 50px;
+    width: 390px;
+ }
+   /* Вкладка маршруты в footer*/
+ .footer-marshruty {
+  position: absolute;
+  top: 75px; /* Задайте нужное значение для координаты Y */
+  left: 800px; /* Задайте нужное значение для координаты X */
+  font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+  font-size: 24px; /* Задайте размер шрифта */
+  line-height: auto; /* Задайте высоту строки автоматически */
+  font-weight: bold; /* Задайте обычное начертание */
+  color: #FFF;
+  transition: color 0.3s; /* Добавляем плавный переход для изменения фона */
+  cursor: pointer;
+ }
+ /* Вкладка маршруты в footer*/
+ .footer-marshruty:hover,
+ .footer-marshruty:focus {
+  color: #E6641B; /* Задайте цвет подсветки */
+ }
+  /* Вкладка о нас в footer*/
+ .footer-onas {
+  position: absolute;
+  top: 75px; /* Задайте нужное значение для координаты Y */
+  left: 1100px; /* Задайте нужное значение для координаты X */
+  font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+  font-size: 24px; /* Задайте размер шрифта */
+  line-height: auto; /* Задайте высоту строки автоматически */
+  font-weight: bold; /* Задайте обычное начертание */
+  color: #FFF;
+  transition: color 0.3s; /* Добавляем плавный переход для изменения фона */
+  cursor: pointer;
+ }
+  /* Вкладка о нас в footer*/
+ .footer-onas:hover,
+ .footer-onas:focus {
+  color: #E6641B; /* Задайте цвет подсветки */
+ }
+ /* Вкладка статьи в footer*/
+ .footer-staty {
+  position: absolute;
+  top: 145px; /* Задайте нужное значение для координаты Y */
+  left: 1100px; /* Задайте нужное значение для координаты X */
+  font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+  font-size: 24px; /* Задайте размер шрифта */
+  line-height: auto; /* Задайте высоту строки автоматически */
+  font-weight: bold; /* Задайте обычное начертание */
+  color: #FFF;
+  transition: color 0.3s; /* Добавляем плавный переход для изменения фона */
+  cursor: pointer;
+ }
+ /* Вкладка статьи в footer*/
+ .footer-staty:hover,
+ .footer-staty:focus {
+  color: #E6641B; /* Задайте цвет подсветки */
+ }
+ /* Вкладка контакты в footer*/
+ .footer-kontakty {
+  position: absolute;
+  top: 215px; /* Задайте нужное значение для координаты Y */
+  left: 1100px; /* Задайте нужное значение для координаты X */
+  font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+  font-size: 24px; /* Задайте размер шрифта */
+  line-height: auto; /* Задайте высоту строки автоматически */
+  font-weight: bold; /* Задайте обычное начертание */
+  color: #FFF;
+  transition: color 0.3s; /* Добавляем плавный переход для изменения фона */
+  cursor: pointer;
+ }
+ /* Вкладка контакты в footer*/
+ .footer-kontakty:hover,
+ .footer-kontakty:focus {
+  color: #E6641B; /* Задайте цвет подсветки */
+ }
+  /* Вкладка профиль в footer*/
+ .footer-profile {
+  position: absolute;
+  top: 75px; /* Задайте нужное значение для координаты Y */
+  left: 1400px; /* Задайте нужное значение для координаты X */
+  font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+  font-size: 24px; /* Задайте размер шрифта */
+  line-height: auto; /* Задайте высоту строки автоматически */
+  font-weight: bold; /* Задайте обычное начертание */
+  color: #FFF;
+  transition: color 0.3s; /* Добавляем плавный переход для изменения фона */
+  cursor: pointer;
+ }
+  /* Вкладка профиль в footer*/
+ .footer-profile:hover,
+ .footer-profile:focus {
+  color: #E6641B; /* Задайте цвет подсветки */
+ }
+  /* Вкладка корзина в footer*/
+ .footer-trash {
+  position: absolute;
+  top: 145px; /* Задайте нужное значение для координаты Y */
+  left: 1400px; /* Задайте нужное значение для координаты X */
+  font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+  font-size: 24px; /* Задайте размер шрифта */
+  line-height: auto; /* Задайте высоту строки автоматически */
+  font-weight: bold; /* Задайте обычное начертание */
+  color: #FFF;
+  transition: color 0.3s; /* Добавляем плавный переход для изменения фона */
+  cursor: pointer;
+ }
+   /* Вкладка корзина в footer*/
+ .footer-trash:hover,
+ .footer-trash:focus {
+  color: #E6641B; /* Задайте цвет подсветки */
+ }
+ /* Вкладка избранное в footer*/
+ .footer-izbran {
+  position: absolute;
+  top: 215px; /* Задайте нужное значение для координаты Y */
+  left: 1400px; /* Задайте нужное значение для координаты X */
+  font-family: "Open Sans", sans-serif; /* Задайте шрифт Open Sans */
+  font-size: 24px; /* Задайте размер шрифта */
+  line-height: auto; /* Задайте высоту строки автоматически */
+  font-weight: bold; /* Задайте обычное начертание */
+  color: #FFF;
+  transition: color 0.3s; /* Добавляем плавный переход для изменения фона */
+  cursor: pointer;
+ }
+ /* Вкладка избранное в footer*/
+ .footer-izbran:hover,
+ .footer-izbranh:focus {
+  color: #E6641B; /* Задайте цвет подсветки */
+ }
+ .Vkfooter {
+  position: absolute;
+  top: 75px; /* Задайте нужное значение для координаты Y */
+  left: 1700px; /* Задайте нужное значение для координаты X */
+ }
+ .Okfooter {
+  position: absolute;
+  top: 75px; /* Задайте нужное значение для координаты Y */
+  left: 1775px; /* Задайте нужное значение для координаты X */
+ }
+ @media only screen and (max-width: 1000px) {
+  /* Вкладка маршруты в header*/
+  body {
+    overflow-x: hidden; /* Обрезать горизонтальное содержимое */
+  }
+  
+  .logo {
+    top: 23px;
+    left: 68px;
+
+  }
+  .Krugo {
+    top: 45px;
+    left: 200px;
+  }
+  .headermarhrut {
+    display: none;
+  }
+  .header-onas {
+    display: none;
+  }
+  .header-staty {
+    display: none;
+  }
+  .header-contacts {
+    display: none;
+  }
+  .profile {
+    top: 200px;
+    left: 178px;
+  }
+  .name {
+    top: 400px;
+    left: 178px;
+  }
+  .text-name {
+    top: 450px;
+    left: 150px;
+  }
+  .body-lastname {
+    top: 600px;
+    left: 178px;
+  }
+  .text-lastname {
+    top: 650px;
+    left: 150px;
+  }
+  .body-email {
+    top: 800px;
+    left: 178px;
+  }
+  .text-email {
+    top: 850px;
+    left: 150px;
+  }
+  .body-phone {
+    top: 1000px;
+    left: 178px;
+  }
+  .text-number {
+    top: 1050px;
+    left: 150px;
+  }
+  .body-birthdate {
+    top: 1200px;
+    left: 178px;
+  }
+  .date-field {
+    top: 1250px;
+    left: 150px;
+  }
+  .body-city {
+    top: 1400px;
+    left: 178px;
+  }
+  .text-city {
+    top: 1450px;
+    left: 150px;
+  }
+  .documents {
+    top: 1600px;
+    left: 178px;
+  }
+  .box4 {
+    top: 1700px;
+    left: 150px;
+    width: 400px;
+  }
+  .saved-cards {
+    top: 1900px;
+    left: 178px;
+  }
+  .box {
+    top: 2000px;
+    left: 150px;
+    width: 400px;
+  }
+  .content {
+    top: 2100px;
+    left: 150px;
+  }
+  .card-number {
+    top: 2000px;
+    left: 178px;
+  }
+  .text-numbercard {
+    top: 2050px;
+    left: 150px;
+    width: 500px;
+  }
+  .card-srok {
+    top: 2200px;
+    left: 178px;
+  }
+  .text-srokcard {
+    top: 2250px;
+    left: 150px;
+    width: 500px;
+  }
+  .card-cvc {
+    top: 2400px;
+    left: 178px;
+  }
+  .text-cvc {
+    top: 2450px;
+    left: 150px;
+    width: 500px;
+  }
+  .box1hidden {
+    top: 2600px;
+    left: 178px;
+    width: 300px;
+  }
+  .box2hidden {
+    top: 2700px;
+    left: 178px;
+    width: 400px;
+  }
+  .footer {
+    top: 3000px;
+  }
+  .logopodval {
+    position: absolute;
+    left: 150px;
+    top: 25px;
+    width: 300px;
+  }
+  .footer-marshruty {
+    top: 100px; /* Задайте нужное значение для координаты Y */
+    left: 178px; /* Задайте нужное значение для координаты X */
+  }
+  .footer-onas {
+    top: 150px; /* Задайте нужное значение для координаты Y */
+    left: 178px; /* Задайте нужное значение для координаты X */
+  }
+  .footer-staty {
+    top: 200px; /* Задайте нужное значение для координаты Y */
+    left: 178px; /* Задайте нужное значение для координаты X */
+  }
+  .footer-kontakty {
+    top: 250px; /* Задайте нужное значение для координаты Y */
+    left: 178px; /* Задайте нужное значение для координаты X */
+  }
+  .footer-profile {
+    top: 100px; /* Задайте нужное значение для координаты Y */
+    left: 400px; /* Задайте нужное значение для координаты X */
+  }
+  .footer-trash {
+    top: 150px; /* Задайте нужное значение для координаты Y */
+    left: 400px; /* Задайте нужное значение для координаты X */
+  }
+  .footer-izbran {
+    top: 200px; /* Задайте нужное значение для координаты Y */
+    left: 400px; /* Задайте нужное значение для координаты X */
+  }
+  .Vkfooter {
+    position: absolute;
+    top: 250px; /* Задайте нужное значение для координаты Y */
+    left: 400px; /* Задайте нужное значение для координаты X */
+  }
+  .Okfooter {
+    position: absolute;
+    top: 250px; /* Задайте нужное значение для координаты Y */
+    left: 500px; /* Задайте нужное значение для координаты X */
+  }
+  .section-center {
+    display: block;
+  }
+  .menu-icon:checked + label,
+.menu-icon:not(:checked) + label{
+  display: block;
+}
+.menu-icon:checked + label:before,
+.menu-icon:not(:checked) + label:before{
+  display: block;
+}
+.menu-icon:checked + label:after,
+.menu-icon:not(:checked) + label:after{
+  display: block;
+}
+.nav{
+  display: block;
+}
+}
